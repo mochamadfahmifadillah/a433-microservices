@@ -1,0 +1,35 @@
+# Menggunakan Docker Compose versi 3.8
+version: "3.8"
+
+services:
+  # Service aplikasi Node.js
+  item-app:
+    # Mengambil image dari GitHub Container Registry
+    image: ghcr.io/mochamadfahmifadillah/item-app:v1
+
+    # Memetakan port 8080 container ke port 80 host
+    ports:
+      - "80:8080"
+
+    # Menjalankan aplikasi setelah service database diluncurkan
+    depends_on:
+      - item-db
+
+    # Menjalankan ulang container jika berhenti
+    restart: always
+
+  # Service database MongoDB
+  item-db:
+    # Menggunakan MongoDB versi 3
+    image: mongo:3
+
+    # Menyimpan data database secara persisten
+    volumes:
+      - app-db:/data/db
+
+    # Menjalankan ulang container jika berhenti
+    restart: always
+
+# Mendefinisikan named volume untuk database
+volumes:
+  app-db:

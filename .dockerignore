@@ -1,2 +1,11 @@
-# Ignore node_modules directory
-src/node_modules
+# Mengabaikan dependencies lokal
+node_modules
+
+# Mengabaikan riwayat Git
+.git
+
+# Mengabaikan file konfigurasi lokal
+.env
+
+# Mengabaikan log npm
+npm-debug.log
